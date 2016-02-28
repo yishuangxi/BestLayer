@@ -39,7 +39,15 @@
         this._reset();
     };
 
-    BestLayer.prototype.open = function () {
+    BestLayer.prototype.open = function (options) {
+        var self = this;
+        var defaultOptions = {
+            title:'',
+            content:''
+        };
+        var options = $({},defaultOptions, options);
+        if(options.title) this.layer.find('.bs-layer-title').text(options.title);
+        if(options.content) this.layer.find('.bs-layer-content').text(options.content);
         this.layer.fadeIn(this.options.speed, function(){
             self.options.openCallback(self);
         });
